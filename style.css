@@ -30,20 +30,17 @@
     min-height: 30%;
 }
 .calc-work-text {
-    /* opacity: 40%; */
-    /* background-color: red; */
-
     display: flex;
-    flex-wrap: wrap;
-
+    flex-direction: column-reverse;  /* Главное изменение - колонка в обратном порядке */
     align-items: flex-end;
-    justify-content: flex-end;
     padding-right: 20px;
-
     color: white;
     font-size: 36px;
-
     height: 100%;
+    
+    overflow-y: auto;  /* Добавляем прокрутку если нужно */
+    overflow-x: hidden;
+    word-break: break-all;
 }
 
 /*      -------------------         */
