@@ -10,15 +10,24 @@ const num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 const action = ['+', '-', '/', '*'];
 const action_result = '=';
 
-let a;
-let b = 5;
+let countNum = 0;
+
 
 /* Используем метод forEach для перебора значение NodeList - списка кнопок, который мы получили */
 buttons.forEach(button => {
     button.addEventListener('click', () => {
+               
+
         // Ввод обычных чисел
         if(num.includes(button.textContent)){
-            workPlace.append(button.textContent);
+            if(countNum < 13){
+                workPlace.append(button.textContent);
+                countNum++;
+                console.log(countNum);
+            }
+            else{
+                alert('Вы не можете ввести больше 13 чисел');
+            }
         }
 
         // Ввод знаков действий
@@ -30,13 +39,24 @@ buttons.forEach(button => {
                 if(!action.includes(getLastSymbol()) ){ // Проверяем что последний символ на экране не был действием
                     // a = workPlace.textContent; // Сохраняем значения до знака действия
                     workPlace.append(button.textContent);
+                    if(countNum >= 13){
+                        countNum = 0;
+                    }
                 }
             }
         }
 
         // Ввод стирающих действий
-        if(button.querySelector == destroydButtons){
-            console.log('Опа!');
+        if(button.classList.contains('Ac')){
+            workPlace.textContent = '';
+        }
+        if(button.classList.contains('de')){
+            workPlace.textContent = workPlace.textContent.slice(0, -1);
+        }
+
+        // Ввод точки
+        if(button.classList.contains('calc-dot')){
+            workPlace.textContent += ".";
         }
 
         // Вывод результата
